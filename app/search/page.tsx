@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from 'next/navigation';
 import Card from "../components/Card";
-
+import { Suspense } from 'react';
 
 export default function Search() {
     const searchParams = useSearchParams();
@@ -28,6 +28,7 @@ export default function Search() {
     }, [])
 
     return (
+        <Suspense fallback={<div>Loading search parameters...</div>}>
         <div className="min-h-screen">
             <div className="p-5">
             <h1 className="text-center text-4xl">Search Results For "{query?.toLowerCase()}"</h1>
@@ -38,7 +39,6 @@ export default function Search() {
             </div>
             </div>
         </div>
-        
-        
+        </Suspense>
     )
 }
